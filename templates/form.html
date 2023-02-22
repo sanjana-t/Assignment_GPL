@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django File upload</title>
+</head>
+<body>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="file1"> Upload a file</label>
+        <input type="file" id="file1" name="file">
+        <small>Only accepts CSV files</small>
+        <label>TimeFrame</label>
+        <input type='number'>
+        <button type="submit" onClick=UserAction()>Submit</button>
+    </form>
+    <script>
+        function UserAction() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                 if (this.readyState == 4 && this.status == 200) {
+                     alert(this.responseText);
+                 }
+            };
+            xhttp.open("POST", "http://127.0.0.1:8000/api/formsubmit/", true);
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.send();
+        }
+    </script>
+</body>
+</html>
